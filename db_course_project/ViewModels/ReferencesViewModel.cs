@@ -3,22 +3,21 @@ using db_course_project.Extentions;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Data.Entity;
-using System.Diagnostics;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 
 namespace db_course_project.ViewModels
 {
     class ReferencesViewModel : ViewModelBase
     {
         public RelayCommand RefClickCommand { get; set; }
+        public RelayCommand TestClickCommand { get; set; }
+        public RelayCommand SearchCommand { get; set; }
+        public RelayCommand SaveCommand { get; set; }
+
         public ApplicationDbContext db { get; set; }
-        private ObservableCollection<object> _items;
-        public ObservableCollection<object> Items
+        private IEnumerable<object> _items;
+        public IEnumerable<object> Items
         {
             get => _items;
             set => SetValue(ref _items, value);
@@ -28,17 +27,33 @@ namespace db_course_project.ViewModels
             db = new ApplicationDbContext();
             LoadDb();
             RefClickCommand = new RelayCommand(SetDataSrouce);
+            TestClickCommand = new RelayCommand((param) =>
+            {
+                foreach (IDbTable row in Items)
+                {
+                    Table table = Table.GetTable(row);
+                    //row.IsSearchable("asf");
+                }
+            });
+            SearchCommand = new RelayCommand((param) =>
+            {
+                Items = Search(param as string);
+            });
+            SaveCommand = new RelayCommand((param) =>
+            {
+                SaveDb();
+            });
         }
-        public async void LoadDb()
+        public void LoadDb()
         {
-            await db.Автомобили.LoadAsync();
-            await db.Должности.LoadAsync();
-            await db.Заказы.LoadAsync();
-            await db.Клиенты.LoadAsync();
-            await db.Сотрудники.LoadAsync();
-            await db.Тарифы.LoadAsync();
-            await db.Тип_автомобиля.LoadAsync();
-            await db.Услуги.LoadAsync();
+            db.Автомобили.Load();
+            db.Должности.Load();
+            db.Заказы.Load();
+            db.Клиенты.Load();
+            db.Сотрудники.Load();
+            db.Тарифы.Load();
+            db.Тип_автомобиля.Load();
+            db.Услуги.Load();
         }
         
         public void SetDataSrouce(object tableName)
@@ -47,23 +62,19 @@ namespace db_course_project.ViewModels
             var dbSet = GetPropValue(db, name);
             var local = GetPropValue(dbSet, "Local");
 
-            var type = local.GetType(); 
-
-            //object f = InvokeMethod(local, "CopyTo");
-            //ObservableCollection<object> ff;
-            
-            ////ObservableCollection<Должности> list = f.;
-            //Debug.WriteLine(local is ObservableCollection<Должности>);
+            Items = (local as IEnumerable<IDbTable>);
         }
-        //public void convert(string className, object items)
-        //{
-        //    Type type = Type.GetType(className);
-        //    dynamic listType = typeof(ObservableCollection<>);
-        //    var constructedListType = listType.MakeGenericType(type);
-
-        //    var instance = Activator.CreateInstance(constructedListType);
-
-        //}
+        public void SaveDb()
+        {
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
         public static object GetPropValue(object src, string propName)
         {
             return src.GetType().GetProperty(propName).GetValue(src, null);
@@ -71,6 +82,20 @@ namespace db_course_project.ViewModels
         public static object InvokeMethod(object src, string MethodName)
         {
             return src.GetType().GetMethod(MethodName).Invoke(src, null);
+        }
+
+        public IEnumerable<object> Search(string value)
+        {
+            ObservableCollection<object> items = new ObservableCollection<object>();
+            foreach (IDbTable row in Items)
+            {
+                if (row.IsSearchable(value))
+                {
+                    items.Add(row);
+                }
+            }
+
+            return items;
         }
     }
 }

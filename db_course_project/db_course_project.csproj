@@ -68,7 +68,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Database\ApplicationDbContext.cs" />
+    <Compile Include="Database\IDbTable.cs" />
     <Compile Include="Database\sysdiagrams.cs" />
+    <Compile Include="Database\Table.cs" />
     <Compile Include="Database\Автомобили.cs" />
     <Compile Include="Database\Должности.cs" />
     <Compile Include="Database\Заказы.cs" />

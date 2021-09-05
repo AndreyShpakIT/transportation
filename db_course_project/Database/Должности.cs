@@ -6,7 +6,7 @@ namespace db_course_project.Database
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Должности
+    public partial class Должности : IDbTable
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Должности()
@@ -21,8 +21,8 @@ namespace db_course_project.Database
         [Column("Название должности")]
         [StringLength(10)]
         public string Название_должности { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        
+        [ScaffoldColumn(false)]
         public virtual ICollection<Сотрудники> Сотрудники { get; set; }
     }
 }

@@ -47,11 +47,36 @@
         </StackPanel>
         
         <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <TextBox 
+                    x:Name="rbSearch"
+                    Width="300"/>
+                <Button 
+                    Padding="15"
+                    Content="Search" 
+                    Command="{Binding SearchCommand}"
+                    CommandParameter="{Binding ElementName=rbSearch, Path=Text}"/>
+                <Button 
+                    Padding="15"
+                    Content="Save db" 
+                    Command="{Binding SaveCommand}"
+                    />
+            </StackPanel>
             <DataGrid 
+                Grid.Row="1"
                 Margin="10"
                 Name="dataGrid" 
-                ItemsSource="{Binding Items}"
+                ItemsSource="{Binding Items, Mode=TwoWay}"
                 />
+            <Button 
+                Content="click" 
+                Grid.Row="2"
+                Command="{Binding TestClickCommand}"/>
         </Grid>
     </Grid>
 </UserControl>
