@@ -6,7 +6,7 @@ namespace db_course_project.Database
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Сотрудники
+    public partial class Сотрудники : IDbTable
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Сотрудники()

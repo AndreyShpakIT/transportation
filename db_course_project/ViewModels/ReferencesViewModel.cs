@@ -14,10 +14,19 @@ namespace db_course_project.ViewModels
         public RelayCommand TestClickCommand { get; set; }
         public RelayCommand SearchCommand { get; set; }
         public RelayCommand SaveCommand { get; set; }
+        public RelayCommand RefreshCommand { get; set; }
 
         public ApplicationDbContext db { get; set; }
-        private IEnumerable<object> _items;
-        public IEnumerable<object> Items
+
+        private string _colName;
+        public string ColumnName
+        {
+            get => _colName;
+            set => SetValue(ref _colName, value);
+        }
+
+        private object _items;
+        public object Items
         {
             get => _items;
             set => SetValue(ref _items, value);
@@ -29,11 +38,11 @@ namespace db_course_project.ViewModels
             RefClickCommand = new RelayCommand(SetDataSrouce);
             TestClickCommand = new RelayCommand((param) =>
             {
-                foreach (IDbTable row in Items)
-                {
-                    Table table = Table.GetTable(row);
-                    //row.IsSearchable("asf");
-                }
+                //foreach (IDbTable row in Items)
+                //{
+                //    Table table = Table.GetTable(row);
+                //    //row.IsSearchable("asf");
+                //}
             });
             SearchCommand = new RelayCommand((param) =>
             {
@@ -42,6 +51,12 @@ namespace db_course_project.ViewModels
             SaveCommand = new RelayCommand((param) =>
             {
                 SaveDb();
+            });
+            RefreshCommand = new RelayCommand((param) =>
+            {
+                LoadDb();
+                Items = null;
+                SetDataSrouce(ColumnName);
             });
         }
         public void LoadDb()
@@ -58,6 +73,8 @@ namespace db_course_project.ViewModels
         
         public void SetDataSrouce(object tableName)
         {
+            ColumnName = tableName as string;
+
             string name = Convert.ToString(tableName);
             var dbSet = GetPropValue(db, name);
             var local = GetPropValue(dbSet, "Local");
@@ -87,13 +104,13 @@ namespace db_course_project.ViewModels
         public IEnumerable<object> Search(string value)
         {
             ObservableCollection<object> items = new ObservableCollection<object>();
-            foreach (IDbTable row in Items)
-            {
-                if (row.IsSearchable(value))
-                {
-                    items.Add(row);
-                }
-            }
+            //foreach (IDbTable row in Items)
+            //{
+            //    if (row.IsSearchable(value))
+            //    {
+            //        items.Add(row);
+            //    }
+            //}
 
             return items;
         }

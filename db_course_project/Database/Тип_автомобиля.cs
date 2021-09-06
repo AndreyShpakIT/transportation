@@ -7,7 +7,7 @@ namespace db_course_project.Database
     using System.Data.Entity.Spatial;
 
     [Table("Тип автомобиля")]
-    public partial class Тип_автомобиля
+    public partial class Тип_автомобиля : IDbTable
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Тип_автомобиля()

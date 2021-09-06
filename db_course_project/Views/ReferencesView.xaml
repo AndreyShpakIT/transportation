@@ -27,6 +27,12 @@
                 Command="{Binding RefClickCommand}"
                 CommandParameter="Сотрудники"/>
             <Button 
+                Content="Клиенты"
+                Margin="10 0 10 10"
+                MaxWidth="300"
+                Command="{Binding RefClickCommand}"
+                CommandParameter="Клиенты"/>
+            <Button 
                 Content="Автомобили"
                 Margin="10 0 10 10"
                 Command="{Binding RefClickCommand}"
@@ -44,39 +50,83 @@
                 MaxWidth="300"
                 Command="{Binding RefClickCommand}"
                 CommandParameter="Тарифы"/>
+            <Button 
+                Content="Тип автомобиля"
+                Margin="10 0 10 10"
+                MaxWidth="300"
+                Command="{Binding RefClickCommand}"
+                CommandParameter="Тип_автомобиля"/>
+            <Button 
+                Content="Услуги"
+                Margin="10 0 10 10"
+                MaxWidth="300"
+                Command="{Binding RefClickCommand}"
+                CommandParameter="Услуги"/>
+            <Button 
+                Content="Заявки"
+                Margin="10 0 10 10"
+                MaxWidth="300"
+                Command="{Binding RefClickCommand}"
+                CommandParameter="Заявки"/>
+            <Button 
+                Content="Услуги"
+                Margin="10 0 10 10"
+                MaxWidth="300"
+                Command="{Binding RefClickCommand}"
+                CommandParameter="Заказы"/>
+
         </StackPanel>
         
-        <Grid Grid.Column="1">
+        <Grid 
+            Grid.Column="1"
+            Margin="10">
             <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="50"/>
                 <RowDefinition/>
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal">
+            <TextBlock 
+                    FontSize="30"
+                    Grid.Row="0"
+                    Text="{Binding ColumnName, FallbackValue=Fsafas}"
+                    />
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition MinWidth="100"/>
+                    <ColumnDefinition MinWidth="100"/>
+                </Grid.ColumnDefinitions>
                 <TextBox 
                     x:Name="rbSearch"
-                    Width="300"/>
+                    />
                 <Button 
+                    Grid.Column="1"
                     Padding="15"
                     Content="Search" 
                     Command="{Binding SearchCommand}"
                     CommandParameter="{Binding ElementName=rbSearch, Path=Text}"/>
                 <Button 
+                    Grid.Column="2"
                     Padding="15"
-                    Content="Save db" 
-                    Command="{Binding SaveCommand}"
+                    Content="Refresh" 
+                    Command="{Binding RefreshCommand}"
                     />
-            </StackPanel>
+            </Grid>
+            
             <DataGrid 
-                Grid.Row="1"
-                Margin="10"
+                Margin="0 10 0 10"
+                Grid.Row="2"
                 Name="dataGrid" 
                 ItemsSource="{Binding Items, Mode=TwoWay}"
                 />
             <Button 
-                Content="click" 
-                Grid.Row="2"
-                Command="{Binding TestClickCommand}"/>
+                Grid.Row="3"
+                Padding="15"
+                Content="Save db" 
+                Command="{Binding SaveCommand}"
+                />
+
         </Grid>
     </Grid>
 </UserControl>

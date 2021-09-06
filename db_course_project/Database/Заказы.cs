@@ -6,7 +6,7 @@ namespace db_course_project.Database
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Заказы
+    public partial class Заказы : IDbTable
     {
         [Key]
         [Column("Код заказа", Order = 0)]

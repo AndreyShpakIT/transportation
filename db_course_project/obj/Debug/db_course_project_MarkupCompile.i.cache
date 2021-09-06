@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-F:\db_project\db_course_project\obj\Debug\
+D:\db_project\db_project\db_course_project\obj\Debug\
 db_course_project
 none
 false
 DEBUG;TRACE
-F:\db_project\db_course_project\App.xaml
+D:\db_project\db_project\db_course_project\App.xaml
 3-1418180039
 
 25-338411565
-18-2127706044
+182116681010
 MainWindow.xaml;Views\MainView.xaml;Views\ReferencesView.xaml;
 
 True
