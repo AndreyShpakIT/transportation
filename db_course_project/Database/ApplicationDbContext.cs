@@ -8,7 +8,7 @@ namespace db_course_project.Database
     public partial class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext()
-            : base("name=ApplicationDbContext")
+            : base("data source=.\\SQLExpress;initial catalog=Грузоперевозки;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework")
         {
         }
 

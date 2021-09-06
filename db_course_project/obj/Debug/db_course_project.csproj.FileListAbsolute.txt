@@ -73,3 +73,5 @@ D:\db_project\db_project\db_course_project\obj\Debug\db_course_project.csproj.Co
 D:\db_project\db_project\db_course_project\obj\Debug\db_course_project.csproj.CopyComplete
 D:\db_project\db_project\db_course_project\obj\Debug\db_course_project.exe
 D:\db_project\db_project\db_course_project\obj\Debug\db_course_project.pdb
+D:\db_project\db_project\db_course_project\obj\Debug\Views\RequestView.g.cs
+D:\db_project\db_project\db_course_project\obj\Debug\Views\RequestView.baml

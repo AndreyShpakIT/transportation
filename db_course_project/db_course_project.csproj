@@ -90,6 +90,9 @@
     <Compile Include="Views\ReferencesView.xaml.cs">
       <DependentUpon>ReferencesView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\RequestView.xaml.cs">
+      <DependentUpon>RequestView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -107,6 +110,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ReferencesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RequestView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
