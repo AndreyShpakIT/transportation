@@ -64,6 +64,7 @@ namespace db_course_project.ViewModels
             db.Автомобили.Load();
             db.Должности.Load();
             db.Заказы.Load();
+            db.Заявки.Load();
             db.Клиенты.Load();
             db.Сотрудники.Load();
             db.Тарифы.Load();

@@ -82,8 +82,13 @@
     <Compile Include="Database\Услуги.cs" />
     <Compile Include="Extentions\RelayCommand.cs" />
     <Compile Include="Extentions\ViewModelBase.cs" />
+    <Compile Include="ViewModels\CreateNewClientViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ReferencesViewModel.cs" />
+    <Compile Include="ViewModels\RequestViewModel.cs" />
+    <Compile Include="Views\CreateClientWindow.xaml.cs">
+      <DependentUpon>CreateClientWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -105,6 +110,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\CreateClientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

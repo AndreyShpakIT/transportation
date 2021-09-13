@@ -3,19 +3,154 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:db_course_project.Views"
+             xmlns:local="clr-namespace:db_course_project.Views" 
+             xmlns:viewmodels="clr-namespace:db_course_project.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+             d:DesignHeight="650" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <viewmodels:RequestViewModel x:Key="vmRequest"/>
+    </UserControl.Resources>
+    
+    <Grid
+        DataContext="{StaticResource vmRequest}"
+        Margin="20 20 20 0">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <TextBlock
             FontSize="25"
             FontWeight="Bold"
             Text="Заявки"
+            HorizontalAlignment="Center"
             />
+        <StackPanel 
+            MaxWidth="400"
+            Grid.Row="1"
+            >
+            <StackPanel 
+                Width="300"
+                Grid.Row="1"
+                Margin="0 10 0 0">
+                <TextBlock 
+                    Text="Дата создания заявки:"
+                    />
+                <DatePicker 
+                    SelectedDate="{Binding InitDate}"
+                    IsEnabled="False"
+                    />
+            </StackPanel>
+            <StackPanel 
+                Width="300"
+                Grid.Row="1"
+                Margin="0 10 0 0">
+                <TextBlock 
+                    Text="Дата отправления:"
+                    />
+                <DatePicker
+                    DisplayDateStart="{Binding DateStart}"
+                    DisplayDateEnd="{Binding DateEnd}"
+                    SelectedDate="{Binding SelectedDate}"
+                    />
+            </StackPanel>
+            <StackPanel 
+                Width="300"
+                Grid.Row="1"
+                Margin="0 10 0 0">
+                <TextBlock 
+                    Text="Клиент:"
+                    />
+                <ComboBox 
+                    ItemsSource="{Binding ClientItems}"
+                    SelectedItem="{Binding SelectedClient}"
+                    >
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <DockPanel>
+                                <TextBlock 
+                                    Width="230"
+                                    FontSize="12"
+                                    Text="{Binding Path=ФИО}" 
+                                    FontWeight="Bold" 
+                                    Margin="5 0"/>
+                                <TextBlock 
+                                    Text="{Binding StringFormat=({0}), Path=Код_клиента}"/>
+                            </DockPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button 
+                    Margin="0 5 0 0"
+                    Content="Новый клиент"
+                    Command="{Binding NewClientCommand}"
+                    />
+            </StackPanel>
+
+            <StackPanel 
+                Width="300"
+                Grid.Row="1"
+                Margin="0 10 0 0">
+                <TextBlock 
+                    Text="Название услуги: "
+                    />
+                <ComboBox 
+                    ItemsSource="{Binding ServiceItems}"
+                    SelectedItem="{Binding SelectedService}"
+                    >
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock 
+                                    Width="230"
+                                    FontSize="12"
+                                    Text="{Binding Path=Название_услуги}" 
+                                    FontWeight="Bold" 
+                                    Margin="5 0"/>
+                                <TextBlock 
+                                    Text="{Binding StringFormat=({0}), Path=Код_услуги}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel 
+                Width="300"
+                Grid.Row="1"
+                Margin="0 10 0 0">
+                <TextBlock 
+                    Text="Адрес доставки:"
+                    />
+                <TextBox Height="25" Text="{Binding Address}"/>
+            </StackPanel>
+            <StackPanel 
+                Width="300"
+                Grid.Row="1"
+                Margin="0 10 0 0">
+                <TextBlock 
+                    Text="Количество километров:"
+                    />
+                <TextBox Height="25" Text="{Binding Km}"/>
+            </StackPanel>
+            <StackPanel 
+                Width="300"
+                Grid.Row="1"
+                Margin="0 30 0 0">
+                <TextBlock 
+                    Text="Сумма:"
+                    />
+                <TextBox Height="25" Text="{Binding Sum}" IsEnabled="False"/>
+            </StackPanel>
+        </StackPanel>
+        <Button 
+            Grid.ColumnSpan="2"
+            Margin="5"
+            Grid.Row="10"
+            Content="Создать"
+            Background="White"
+            Command="{Binding CreateRequestCommand}"
+            />
+
     </Grid>
 </UserControl>

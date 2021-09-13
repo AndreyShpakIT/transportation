@@ -25,7 +25,7 @@ namespace db_course_project.ViewModels
             Views = new ObservableCollection<UserControl>
             {
                 new ReferencesView(),
-                
+                new RequestView()
             };
 
             TabClickCommand = new RelayCommand((parameter) =>
@@ -33,6 +33,10 @@ namespace db_course_project.ViewModels
                 try
                 {
                     int number = Convert.ToInt32(parameter);
+                    if (number == 1)
+                    {
+                        Views[number] = new RequestView();
+                    }
                     CurrentView = Views[number];
                 }
                 catch

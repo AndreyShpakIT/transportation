@@ -30,6 +30,16 @@ namespace db_course_project.Database
         [Column("Дата перевозки", TypeName = "date")]
         public DateTime Дата_перевозки { get; set; }
 
+
+        [Column("Адрес доставки")]
+        [Required]
+        [StringLength(100)]
+        public string Адрес_доставки { get; set; }
+
+        [Column("Км")]
+        [Required]
+        public int Км { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Заказы> Заказы { get; set; }
 
