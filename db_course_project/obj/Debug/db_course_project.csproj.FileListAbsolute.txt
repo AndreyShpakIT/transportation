@@ -74,6 +74,10 @@ D:\db_project\db_project\db_course_project\obj\Debug\db_course_project.exe
 D:\db_project\db_project\db_course_project\obj\Debug\db_course_project.pdb
 D:\db_project\db_project\db_course_project\obj\Debug\Views\RequestView.g.cs
 D:\db_project\db_project\db_course_project\obj\Debug\Views\RequestView.baml
-D:\db_project\db_project\db_course_project\obj\Debug\db_course_project.csprojAssemblyReference.cache
 D:\db_project\db_project\db_course_project\obj\Debug\Views\CreateClientWindow.g.cs
 D:\db_project\db_project\db_course_project\obj\Debug\Views\CreateClientWindow.baml
+D:\db_project\db_project\db_course_project\obj\Debug\Views\OrdersView.g.cs
+D:\db_project\db_project\db_course_project\obj\Debug\Views\OrdersView.baml
+D:\db_project\db_project\db_course_project\obj\Debug\Views\CreateOrderWindow.g.cs
+D:\db_project\db_project\db_course_project\obj\Debug\Views\CreateOrderWindow.baml
+D:\db_project\db_project\db_course_project\obj\Debug\db_course_project.csprojAssemblyReference.cache

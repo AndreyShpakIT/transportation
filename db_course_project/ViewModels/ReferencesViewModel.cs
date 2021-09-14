@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Windows;
+using System.Linq;
 
 namespace db_course_project.ViewModels
 {

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace db_course_project.Views
 {
     /// <summary>
-    /// Логика взаимодействия для MainView.xaml
+    /// Логика взаимодействия для OrdersView.xaml
     /// </summary>
-    public partial class MainView : UserControl
+    public partial class OrdersView : UserControl
     {
-        public MainView()
+        public OrdersView()
         {
             InitializeComponent();
         }

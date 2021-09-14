@@ -2,12 +2,9 @@
 using db_course_project.Extentions;
 using db_course_project.Views;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace db_course_project.ViewModels
@@ -22,8 +19,9 @@ namespace db_course_project.ViewModels
         private Услуги selectedService;
         private DateTime selectedDate = DateTime.Now.AddDays(3);
         private string address;
-        private int km;
-        private double sum;
+        private decimal km;
+        private decimal sum;
+        private decimal weight;
 
         private ObservableCollection<Клиенты> clients;
         private ObservableCollection<Услуги> services;
@@ -59,19 +57,36 @@ namespace db_course_project.ViewModels
         public Услуги SelectedService
         {
             get => selectedService;
-            set => SetValue(ref selectedService, value);
+            set 
+            {
+                SetValue(ref selectedService, value);
+                Sum = Calculate(km, weight, GetPrice());
+            }
         }
         public string Address
         {
             get => address;
             set => SetValue(ref address, value);
         }
-        public int Km
+        public decimal Km
         {
             get => km;
-            set => SetValue(ref km, value);
+            set
+            {
+                SetValue(ref km, value);
+                Sum = Calculate(km, weight, GetPrice());
+            }
         }
-        public double Sum
+        public decimal Weight
+        {
+            get => weight;
+            set
+            {
+                SetValue(ref weight, value);
+                Sum = Calculate(km, weight, GetPrice());
+            }
+        }
+        public decimal Sum
         {
             get => sum;
             set => SetValue(ref sum, value);
@@ -150,15 +165,28 @@ namespace db_course_project.ViewModels
                 Код_клиента = SelectedClient?.Код_клиента ?? -1,
                 Код_услуги = SelectedService?.Код_услуги ?? -1,
                 Адрес_доставки = Address,
-                Км = Km
+                Расстояние = Km,
+                Масса = Weight,
+                Сумма = Sum,
             };
+        }
+        private decimal GetPrice()
+        {
+            db.Тарифы.Load();
+            if (selectedService == null)
+            {
+                return 0;
+            }
+            return db.Тарифы.Where(f => f.Код_тарифа == selectedService.Код_тарифа).First().Стоимость_тарифа;
         }
         private bool Validate(Заявки req)
         {
             if (string.IsNullOrEmpty(req.Адрес_доставки) ||
-                req.Км == 0 ||
+                req.Расстояние == 0 ||
                 req.Код_клиента == -1 ||
-                req.Код_услуги == -1)
+                req.Код_услуги == -1 || 
+                req.Сумма == -1 ||
+                req.Масса == -1)
                 return false;
             return true;
         }
@@ -169,6 +197,10 @@ namespace db_course_project.ViewModels
             SelectedService = null;
             Address = "";
             Km = 0;
+        }
+        private decimal Calculate(decimal km, decimal kg, decimal k)
+        {
+            return Math.Round((km <= 15 ? 1 : ((km / 10) + 1) * (kg / 10 + 1)) * k, 2); 
         }
     }
 }

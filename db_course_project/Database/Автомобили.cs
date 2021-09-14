@@ -9,8 +9,9 @@ namespace db_course_project.Database
     public partial class Автомобили : IDbTable
     {
         [Key]
-        [Column("Код автомобиля")]
-        public int Код_автомобиля { get; set; }
+        [StringLength(9)]
+        [Column("Номер автомобиля")]
+        public string Код_автомобиля { get; set; }
 
         [Column("Тип автомобиля")]
         public int Тип_автомобиля { get; set; }

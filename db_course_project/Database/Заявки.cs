@@ -36,9 +36,17 @@ namespace db_course_project.Database
         [StringLength(100)]
         public string Адрес_доставки { get; set; }
 
-        [Column("Км")]
+        [Column("Расстояние", TypeName = "decimal")]
         [Required]
-        public int Км { get; set; }
+        public decimal Расстояние { get; set; }
+
+        [Column("Масса", TypeName = "decimal")]
+        [Required]
+
+        public decimal Масса { get; set; }
+        [Column("Сумма", TypeName = "decimal")]
+        [Required]
+        public decimal Сумма { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Заказы> Заказы { get; set; }

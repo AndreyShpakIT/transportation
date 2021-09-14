@@ -25,7 +25,8 @@ namespace db_course_project.ViewModels
             Views = new ObservableCollection<UserControl>
             {
                 new ReferencesView(),
-                new RequestView()
+                new RequestView(),
+                new OrdersView()
             };
 
             TabClickCommand = new RelayCommand((parameter) =>

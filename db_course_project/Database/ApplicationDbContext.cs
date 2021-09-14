@@ -1,4 +1,5 @@
-﻿using System;
+﻿using db_course_project.Database.Views;
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
@@ -22,11 +23,17 @@ namespace db_course_project.Database
         public virtual DbSet<Тип_автомобиля> Тип_автомобиля { get; set; }
         public virtual DbSet<Услуги> Услуги { get; set; }
         public virtual DbSet<Заказы> Заказы { get; set; }
+        public virtual DbSet<ПредставлениеЗаявки> ПредставлениеЗаявки { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Автомобили>()
                 .Property(e => e.Марка)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Автомобили>()
+                .Property(e => e.Код_автомобиля)
                 .IsFixedLength();
 
             modelBuilder.Entity<Должности>()
@@ -88,6 +95,22 @@ namespace db_course_project.Database
             modelBuilder.Entity<Услуги>()
                 .Property(e => e.Описание_услуги)
                 .IsFixedLength();
+
+            modelBuilder.Entity<ПредставлениеЗаявки>()
+                .Property(e => e.ФИО)
+                .IsFixedLength();
+
+            modelBuilder.Entity<ПредставлениеЗаявки>()
+                .Property(e => e.Название_услуги)
+                .IsFixedLength();
+
+            modelBuilder.Entity<ПредставлениеЗаявки>()
+                .Property(e => e.Расстояние)
+                .HasPrecision(10, 2);
+
+            modelBuilder.Entity<ПредставлениеЗаявки>()
+                .Property(e => e.Масса)
+                .HasPrecision(10, 2);
         }
     }
 }

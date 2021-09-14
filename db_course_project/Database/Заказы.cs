@@ -26,7 +26,7 @@ namespace db_course_project.Database
         [Key]
         [Column("Код автомобиля", Order = 3)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Код_автомобиля { get; set; }
+        public string Код_автомобиля { get; set; }
 
         public virtual Заявки Заявки { get; set; }
 

@@ -129,16 +129,25 @@
                 Grid.Row="1"
                 Margin="0 10 0 0">
                 <TextBlock 
-                    Text="Количество километров:"
+                    Text="Расстояние до пункта назначения (км.):"
                     />
                 <TextBox Height="25" Text="{Binding Km}"/>
             </StackPanel>
             <StackPanel 
                 Width="300"
                 Grid.Row="1"
+                Margin="0 10 0 0">
+                <TextBlock 
+                    Text="Масса посылки (кг.):"
+                    />
+                <TextBox Height="25" Text="{Binding Weight}"/>
+            </StackPanel>
+            <StackPanel 
+                Width="300"
+                Grid.Row="1"
                 Margin="0 30 0 0">
                 <TextBlock 
-                    Text="Сумма:"
+                    Text="Сумма (руб.):"
                     />
                 <TextBox Height="25" Text="{Binding Sum}" IsEnabled="False"/>
             </StackPanel>

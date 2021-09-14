@@ -71,6 +71,7 @@
     <Compile Include="Database\IDbTable.cs" />
     <Compile Include="Database\sysdiagrams.cs" />
     <Compile Include="Database\Table.cs" />
+    <Compile Include="Database\Views\ПредставлениеЗаявки.cs" />
     <Compile Include="Database\Автомобили.cs" />
     <Compile Include="Database\Должности.cs" />
     <Compile Include="Database\Заказы.cs" />
@@ -82,15 +83,20 @@
     <Compile Include="Database\Услуги.cs" />
     <Compile Include="Extentions\RelayCommand.cs" />
     <Compile Include="Extentions\ViewModelBase.cs" />
+    <Compile Include="ViewModels\CreateNewOrderViewModel.cs" />
     <Compile Include="ViewModels\CreateNewClientViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\OrdersViewModel.cs" />
     <Compile Include="ViewModels\ReferencesViewModel.cs" />
     <Compile Include="ViewModels\RequestViewModel.cs" />
     <Compile Include="Views\CreateClientWindow.xaml.cs">
       <DependentUpon>CreateClientWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainView.xaml.cs">
-      <DependentUpon>MainView.xaml</DependentUpon>
+    <Compile Include="Views\CreateOrderWindow.xaml.cs">
+      <DependentUpon>CreateOrderWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OrdersView.xaml.cs">
+      <DependentUpon>OrdersView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ReferencesView.xaml.cs">
       <DependentUpon>ReferencesView.xaml</DependentUpon>
@@ -114,7 +120,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MainView.xaml">
+    <Page Include="Views\CreateOrderWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OrdersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

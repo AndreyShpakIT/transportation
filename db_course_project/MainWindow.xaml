@@ -23,6 +23,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button 
                 Grid.Column="0"
@@ -37,6 +38,27 @@
                 Margin="2"
                 Command="{Binding TabClickCommand}"
                 CommandParameter="1"
+                />
+            <Button 
+                Grid.Column="2"
+                Content="Оформление заказов"
+                Margin="2"
+                Command="{Binding TabClickCommand}"
+                CommandParameter="2"
+                />
+            <Button 
+                Grid.Column="3"
+                Content="Информация по клиентам"
+                Margin="2"
+                Command="{Binding TabClickCommand}"
+                CommandParameter="3"
+                />
+            <Button 
+                Grid.Column="4"
+                Content="Отчеты"
+                Margin="2"
+                Command="{Binding TabClickCommand}"
+                CommandParameter="4"
                 />
         </Grid>
 
