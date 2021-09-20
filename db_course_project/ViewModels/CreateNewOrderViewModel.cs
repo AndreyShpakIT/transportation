@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Windows;
@@ -70,15 +71,27 @@ namespace db_course_project.ViewModels
         }
         private void Create(object param)
         {
-            Заказы order = CreateOrderObject();
-            if (!ValidateOrder(order))
+            try
             {
-                MessageBox.Show("Заполните поля корректными данными!");
-                return;
+                Заказы order = CreateOrderObject();
+                if (!ValidateOrder(order))
+                {
+                    MessageBox.Show("Заполните поля корректными данными!");
+                    return;
+                }
+                db.Заказы.Add(order);
+                db.SaveChanges();
+                OrderCreated?.Invoke(order);
             }
-            db.Заказы.Add(order);
-            db.SaveChanges();
-            OrderCreated?.Invoke(order);
+            catch (DbUpdateException e)
+            {
+                MessageBox.Show(e.InnerException.InnerException.Message);
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
 
         // Methods

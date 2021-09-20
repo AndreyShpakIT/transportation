@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\db_project\db_project\db_course_project\App.xaml
-7-208158244
+8112466207
 
-331679684608
-182116681010
-MainWindow.xaml;Views\CreateClientWindow.xaml;Views\CreateOrderWindow.xaml;Views\MainView.xaml;Views\OrdersView.xaml;Views\ReferencesView.xaml;Views\RequestView.xaml;
+37-574320705
+26-1204959836
+MainWindow.xaml;Views\ClientInfoView.xaml;Views\CreateClientWindow.xaml;Views\CreateOrderWindow.xaml;Views\OrdersView.xaml;Views\ReferencesView.xaml;Views\ReportsView.xaml;Views\RequestView.xaml;
 
 False
 

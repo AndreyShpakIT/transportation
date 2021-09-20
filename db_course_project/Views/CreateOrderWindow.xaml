@@ -78,7 +78,6 @@
             Margin="5"
             Grid.Row="10"
             Content="Оформить"
-            Background="White"
             Command="{Binding CreateCommand}"
             />
 

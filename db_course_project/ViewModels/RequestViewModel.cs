@@ -1,11 +1,15 @@
 ﻿using db_course_project.Database;
 using db_course_project.Extentions;
 using db_course_project.Views;
+using OfficeOpenXml;
 using System;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
+using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Windows;
+
 
 namespace db_course_project.ViewModels
 {
@@ -140,12 +144,24 @@ namespace db_course_project.ViewModels
         {
             try
             {
+                if (!db.Database.SqlQuery<bool>("SELECT dbo.IsDateAvailable(@date)", new SqlParameter("@date", selectedDate)).FirstOrDefault())
+                {
+                    MessageBox.Show("На данную дату нет свободных мест.");
+                    return;
+                }
                 db.Заявки.Load();
                 Заявки request = CreateRequestObject();
                 if (!Validate(request))
                 {
                     MessageBox.Show("Заполните поля корректными данными!");
                     return;
+                }
+                if (!ReportManager.CreateNewReport(GenerateBill, "bill.xlsx"))
+                {
+                    if (MessageBox.Show("Не удалось создать отчет, записать данные в БД?", "", MessageBoxButton.YesNo) == MessageBoxResult.No)
+                    {
+                        return;
+                    } 
                 }
                 db.Заявки.Add(request);
                 db.SaveChanges();
@@ -201,6 +217,25 @@ namespace db_course_project.ViewModels
         private decimal Calculate(decimal km, decimal kg, decimal k)
         {
             return Math.Round((km <= 15 ? 1 : ((km / 10) + 1) * (kg / 10 + 1)) * k, 2); 
+        }
+
+        public void GenerateBill(ExcelWorksheet sheet)
+        {
+            sheet.Cells[1, 1].Value = "Счет на оплату от " + DateTime.Now;
+            sheet.Cells[1, 1].Style.Font.Bold = true;
+            sheet.Cells[1, 1].Style.Font.Size = 18;
+
+            sheet.Cells[3, 1].Value = "Исполнитель: ";
+            sheet.Cells[3, 2].Value = "ОАО \"Грузоперевозки\"";
+
+            sheet.Cells[4, 2].Value = selectedClient.ФИО;
+            sheet.Cells[4, 1].Value = "Заказчик: ";
+
+            sheet.Cells[7, 1].Value = "Счет: ";
+            sheet.Cells[7, 2].Value = "834576938156084592748413847";
+
+            sheet.Cells[9, 1].Value = "Сумма: ";
+            sheet.Cells[9, 2].Value = sum;
         }
     }
 }

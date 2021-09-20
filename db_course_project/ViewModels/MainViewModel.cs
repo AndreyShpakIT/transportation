@@ -26,8 +26,11 @@ namespace db_course_project.ViewModels
             {
                 new ReferencesView(),
                 new RequestView(),
-                new OrdersView()
+                new OrdersView(),
+                new ClientInfoView(),
+                new ReportsView(),
             };
+            CurrentView = Views[0];
 
             TabClickCommand = new RelayCommand((parameter) =>
             {

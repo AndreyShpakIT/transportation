@@ -10,20 +10,17 @@ namespace db_course_project.Database
     {
         [Key]
         [Column("Код заказа", Order = 0)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Код_заказа { get; set; }
 
-        [Key]
         [Column("Код заявки", Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Код_заявки { get; set; }
 
-        [Key]
         [Column("Код менеджера", Order = 2)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Код_менеджера { get; set; }
 
-        [Key]
         [Column("Код автомобиля", Order = 3)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string Код_автомобиля { get; set; }

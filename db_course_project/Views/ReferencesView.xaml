@@ -100,18 +100,22 @@
                 </Grid.ColumnDefinitions>
                 <TextBox 
                     x:Name="rbSearch"
+                    FontSize="22"
+                    Style="{StaticResource MaterialDesignFilledTextBox}"
+                    Padding="10 0 10 3"
                     />
                 <Button 
                     Grid.Column="1"
-                    Padding="15"
                     Content="Search" 
                     Command="{Binding SearchCommand}"
-                    CommandParameter="{Binding ElementName=rbSearch, Path=Text}"/>
+                    CommandParameter="{Binding ElementName=rbSearch, Path=Text}"
+                    Margin="5 5 0 5"
+                    />
                 <Button 
                     Grid.Column="2"
-                    Padding="15"
                     Content="Refresh" 
                     Command="{Binding RefreshCommand}"
+                    Margin="5"
                     />
             </Grid>
             
@@ -123,7 +127,6 @@
                 />
             <Button 
                 Grid.Row="3"
-                Padding="15"
                 Content="Save db" 
                 Command="{Binding SaveCommand}"
                 />

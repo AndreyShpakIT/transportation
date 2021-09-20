@@ -157,7 +157,6 @@
             Margin="5"
             Grid.Row="10"
             Content="Создать"
-            Background="White"
             Command="{Binding CreateRequestCommand}"
             />
 

@@ -36,15 +36,8 @@ namespace db_course_project.ViewModels
         {
             db = new ApplicationDbContext();
             LoadDb();
+            
             RefClickCommand = new RelayCommand(SetDataSrouce);
-            TestClickCommand = new RelayCommand((param) =>
-            {
-                //foreach (IDbTable row in Items)
-                //{
-                //    Table table = Table.GetTable(row);
-                //    //row.IsSearchable("asf");
-                //}
-            });
             SearchCommand = new RelayCommand((param) =>
             {
                 Items = Search(param as string);
@@ -59,6 +52,7 @@ namespace db_course_project.ViewModels
                 Items = null;
                 SetDataSrouce(ColumnName);
             });
+            SetDataSrouce("Заявки");
         }
         public void LoadDb()
         {

@@ -2,7 +2,6 @@
 using db_course_project.Database.Views;
 using db_course_project.Extentions;
 using db_course_project.Views;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
